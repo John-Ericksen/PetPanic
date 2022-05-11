@@ -7,7 +7,7 @@ public class GameCalander
 	{
 	
 	}
-	
+
 	public void startGame(int month)
 	{	
 		System.out.println("Month " + month);
