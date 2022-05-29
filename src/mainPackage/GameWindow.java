@@ -11,15 +11,13 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.Font;
 
-public class TutorialWindow extends JFrame {
+public class GameWindow extends JFrame {
 
 	private JPanel contentPane;
 	private JButton playButton;
-	private JButton quitButton;
+	private JButton titleButton;
 	private JLabel spacer;
 	private JPanel middlePanel;
 	private JLabel tutorialText;
@@ -27,10 +25,10 @@ public class TutorialWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TutorialWindow()
+	public GameWindow()
 	{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1303, 767);
+		setBounds(100, 100, 1808, 1010);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -50,18 +48,10 @@ public class TutorialWindow extends JFrame {
 		
 	
 		
-		quitButton = new JButton("Quit game");
-		quitButton.addActionListener(new ActionListener(){
-			
-			@Override
-			public void actionPerformed(ActionEvent e) 
-			{
-				System.exit(0);
-			}
-		});
-		quitButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		quitButton.setBackground(new Color(249, 158, 234));;
-		bottomPanel.add(quitButton);
+		titleButton = new JButton("Quit game");
+		titleButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		titleButton.setBackground(new Color(249, 158, 234));;
+		bottomPanel.add(titleButton);
 		
 		spacer = new JLabel("");
 		bottomPanel.add(spacer);
