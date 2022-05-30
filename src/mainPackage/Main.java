@@ -4,7 +4,7 @@ public class Main
 {
 	public static void main(String[] args) 
 	{
-		TutorialWindow window = new TutorialWindow();
+		GameWindow window = new GameWindow();
 		  
 		 
 			/*

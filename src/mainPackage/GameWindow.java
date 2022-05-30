@@ -11,72 +11,128 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Font;
+import javax.swing.JTextField;
+import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.Icon;
+import javax.swing.BoxLayout;
 
-public class GameWindow extends JFrame {
+public class GameWindow extends JFrame 
+{
 
 	private JPanel contentPane;
 	private JButton playButton;
-	private JButton titleButton;
+	private JButton quitButton;
 	private JLabel spacer;
-	private JPanel middlePanel;
-	private JLabel tutorialText;
+	private Color buttonColor;
+	private Color backroundColor;
+	private JPanel topFrame;
+	private JLabel placeholder;
+	private JLabel placeholder2;
+	private JLabel hamsterAffection;
+	private JLabel birdAffection;
+	private JLabel catAffection;
+	private JLabel dogAffection;
+	private JPanel midPanel;
+	private JLabel petImage;
+	private JLabel eventText;
+	private JLabel spacer1;
 
 	/**
 	 * Create the frame.
 	 */
 	public GameWindow()
 	{
+
+		buttonColor = new Color(249, 158, 234);
+		backroundColor = new Color(126, 178, 245);
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1808, 1010);
+		setBounds(0, 0, 2571, 1408);
 		contentPane = new JPanel();
+		contentPane.setSize(1920, 1080);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setBackground(new Color(126, 178, 245));
+		contentPane.setBackground(backroundColor);
 		contentPane.setLayout(new BorderLayout(0, 0));
-		
-		JLabel tutorialTitle = new JLabel("Pet Panic!");
-		tutorialTitle.setBackground(new Color(126, 178, 245));
-		tutorialTitle.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 54));
-		tutorialTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(tutorialTitle, BorderLayout.NORTH);
-		
+
 		JPanel bottomPanel = new JPanel();
-		bottomPanel.setBackground(new Color(126, 178, 245));
+		bottomPanel.setBackground(backroundColor);
 		contentPane.add(bottomPanel, BorderLayout.SOUTH);
 		bottomPanel.setLayout(new GridLayout(0, 3, 0, 0));
 		
-	
+		JPanel topPanel = new JPanel();
+		topPanel.setBackground(backroundColor);
+		contentPane.add(topPanel, BorderLayout.NORTH);
+		topPanel.setLayout(new GridLayout(0, 4, 0, 0));
 		
-		titleButton = new JButton("Quit game");
-		titleButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		titleButton.setBackground(new Color(249, 158, 234));;
-		bottomPanel.add(titleButton);
+		dogAffection = new JLabel("Dogs: 0");
+		dogAffection.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		dogAffection.setHorizontalAlignment(SwingConstants.CENTER);
+		topPanel.add(dogAffection);
 		
+		catAffection = new JLabel("Cats: 0");
+		catAffection.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		catAffection.setHorizontalAlignment(SwingConstants.CENTER);
+		topPanel.add(catAffection);
+		
+		hamsterAffection = new JLabel("Hamsters: 0");
+		hamsterAffection.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		hamsterAffection.setHorizontalAlignment(SwingConstants.CENTER);
+		topPanel.add(hamsterAffection);
+		
+		birdAffection = new JLabel("Birds: 0");
+		birdAffection.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		birdAffection.setHorizontalAlignment(SwingConstants.CENTER);
+		topPanel.add(birdAffection);
+		
+		
+		quitButton = new JButton("Quit game");
+		quitButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				System.exit(0);
+			}
+		});
+		quitButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		quitButton.setBackground(buttonColor);
+		;
+		bottomPanel.add(quitButton);
+
 		spacer = new JLabel("");
 		bottomPanel.add(spacer);
-		
+
 		playButton = new JButton("Start Game");
 		playButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		playButton.setBackground(new Color(249, 158, 234));
+		playButton.setBackground(buttonColor);
 		bottomPanel.add(playButton);
 		
+		midPanel = new JPanel();
+		midPanel.setBackground(backroundColor);
+		contentPane.add(midPanel, BorderLayout.CENTER);
+		midPanel.setLayout(new GridLayout(3, 1, 0, 0));
 		
-		middlePanel = new JPanel();
-		middlePanel.setBackground(new Color(126, 178, 245));
-		contentPane.add(middlePanel, BorderLayout.CENTER);
-		middlePanel.setLayout(new BorderLayout(0, 0));
+		petImage = new JLabel("Image");
+		petImage.setHorizontalAlignment(SwingConstants.CENTER);
+		petImage.setVerticalAlignment(SwingConstants.TOP);
+		midPanel.add(petImage);
 		
-		//create an image icon, resized for button
-		ImageIcon titleText = new ImageIcon("C:\\Java Projects\\Pet Panic\\Assets\\Title Textbox.png");
-		Image im = titleText.getImage();
-		Image newim = im.getScaledInstance(1500, 1500, java.awt.Image.SCALE_SMOOTH);
-		titleText = new ImageIcon(newim);
-
-		tutorialText = new JLabel(titleText);
-		tutorialText.setHorizontalAlignment(SwingConstants.CENTER);
-		middlePanel.add(tutorialText, BorderLayout.CENTER);
-		setVisible(true);
+		JLabel eventText = new JLabel("New Event");
+		eventText.setHorizontalAlignment(SwingConstants.CENTER);
+		midPanel.add(eventText);
+		
+		spacer1 = new JLabel("");
+		bottomPanel.add(spacer1);
+		
+	   this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		 setVisible(true);
 	}
 
 }

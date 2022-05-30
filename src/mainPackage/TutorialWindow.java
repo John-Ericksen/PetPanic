@@ -23,33 +23,37 @@ public class TutorialWindow extends JFrame {
 	private JLabel spacer;
 	private JPanel middlePanel;
 	private JLabel tutorialText;
+	private Color buttonColor;
+	private Color backroundColor;
 
 	/**
 	 * Create the frame.
 	 */
 	public TutorialWindow()
 	{
+		buttonColor = new Color(249, 158, 234);
+		backroundColor = new Color(126, 178, 245);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1303, 767);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setBackground(new Color(126, 178, 245));
+		contentPane.setBackground(backroundColor);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JLabel tutorialTitle = new JLabel("Pet Panic!");
-		tutorialTitle.setBackground(new Color(126, 178, 245));
+		tutorialTitle.setBackground(backroundColor);
 		tutorialTitle.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 54));
 		tutorialTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(tutorialTitle, BorderLayout.NORTH);
 		
 		JPanel bottomPanel = new JPanel();
-		bottomPanel.setBackground(new Color(126, 178, 245));
+		bottomPanel.setBackground(backroundColor);
 		contentPane.add(bottomPanel, BorderLayout.SOUTH);
 		bottomPanel.setLayout(new GridLayout(0, 3, 0, 0));
 		
 	
-		
 		quitButton = new JButton("Quit game");
 		quitButton.addActionListener(new ActionListener(){
 			
@@ -60,7 +64,7 @@ public class TutorialWindow extends JFrame {
 			}
 		});
 		quitButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		quitButton.setBackground(new Color(249, 158, 234));;
+		quitButton.setBackground(buttonColor);;
 		bottomPanel.add(quitButton);
 		
 		spacer = new JLabel("");
@@ -68,12 +72,12 @@ public class TutorialWindow extends JFrame {
 		
 		playButton = new JButton("Start Game");
 		playButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		playButton.setBackground(new Color(249, 158, 234));
+		playButton.setBackground(buttonColor);
 		bottomPanel.add(playButton);
 		
 		
 		middlePanel = new JPanel();
-		middlePanel.setBackground(new Color(126, 178, 245));
+		middlePanel.setBackground(backroundColor);
 		contentPane.add(middlePanel, BorderLayout.CENTER);
 		middlePanel.setLayout(new BorderLayout(0, 0));
 		
