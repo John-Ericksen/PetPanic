@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Font;
 
+//creates a window that showcases the tutorial. called before the game starts. might be deleted in favour of a readme if it becomes a hassle.
 public class TutorialWindow extends JFrame {
 
 	private JPanel contentPane;

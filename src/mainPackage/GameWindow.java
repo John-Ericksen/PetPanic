@@ -1,5 +1,4 @@
 package mainPackage;
-
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -11,41 +10,32 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.Font;
-import javax.swing.JTextField;
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.Icon;
-import javax.swing.BoxLayout;
 
+//creates the window for the main loop of the game. also initializes values and starts the game down in main
 public class GameWindow extends JFrame 
 {
-
-	private JPanel contentPane;
-	private JButton playButton;
-	private JButton quitButton;
+	private static ImageIcon dogPortrait;
+	private static  ImageIcon catPortrait;
+	private static ImageIcon birdPortrait;
+	//private static ImageIcon hamsterPortrait;
+	private static EventCard listner = new EventCard("", new int[0], null);
+	private static JPanel contentPane;
+	private static JButton yesButton;
+	private static JButton noButton;
 	private JLabel spacer;
 	private Color buttonColor;
 	private Color backroundColor;
-	private JPanel topFrame;
-	private JLabel placeholder;
-	private JLabel placeholder2;
-	private JLabel hamsterAffection;
-	private JLabel birdAffection;
-	private JLabel catAffection;
-	private JLabel dogAffection;
-	private JPanel midPanel;
-	private JLabel petImage;
-	private JLabel eventText;
-	private JLabel spacer1;
+	private static JLabel hamsterAffection;
+	private static JLabel birdAffection;
+	private static JLabel catAffection;
+	private static JLabel dogAffection;
+	private static JPanel midPanel;
+	private static JLabel petImage;
+	private static JLabel eventText;
+	private  JLabel spacer1;
 
-	/**
-	 * Create the frame.
-	 */
+	//creates the window and UI
 	public GameWindow()
 	{
 
@@ -92,39 +82,41 @@ public class GameWindow extends JFrame
 		topPanel.add(birdAffection);
 		
 		
-		quitButton = new JButton("Quit game");
-		quitButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				System.exit(0);
-			}
-		});
-		quitButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		quitButton.setBackground(buttonColor);
-		;
-		bottomPanel.add(quitButton);
+		noButton = new JButton("No");
+		noButton.setFont(new Font("Tahoma", Font.PLAIN, 50));
+		noButton.setBackground(buttonColor);
+		noButton.addActionListener(listner);
+		noButton.setActionCommand("No");
+		bottomPanel.add(noButton);
 
 		spacer = new JLabel("");
 		bottomPanel.add(spacer);
 
-		playButton = new JButton("Start Game");
-		playButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		playButton.setBackground(buttonColor);
-		bottomPanel.add(playButton);
+		yesButton = new JButton("Yes");
+		yesButton.setFont(new Font("Tahoma", Font.PLAIN, 50));
+		yesButton.setBackground(buttonColor);
+		yesButton.addActionListener(listner);
+		yesButton.setActionCommand("yes");
+		bottomPanel.add(yesButton);
 		
 		midPanel = new JPanel();
 		midPanel.setBackground(backroundColor);
 		contentPane.add(midPanel, BorderLayout.CENTER);
 		midPanel.setLayout(new GridLayout(3, 1, 0, 0));
 		
-		petImage = new JLabel("Image");
+		ImageIcon birdImg = new ImageIcon("C:\\Java Projects\\Pet Panic\\Assets\\Bird.png");
+		Image im3 = birdImg.getImage();
+		Image newim3 = im3.getScaledInstance(300, 270, java.awt.Image.SCALE_SMOOTH);
+		birdImg = new ImageIcon(newim3);
+		
+		petImage = new JLabel(birdImg);
 		petImage.setHorizontalAlignment(SwingConstants.CENTER);
 		petImage.setVerticalAlignment(SwingConstants.TOP);
 		midPanel.add(petImage);
 		
-		JLabel eventText = new JLabel("New Event");
+		eventText = new JLabel("New Event");
+		eventText.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		eventText.setVerticalAlignment(SwingConstants.TOP);
 		eventText.setHorizontalAlignment(SwingConstants.CENTER);
 		midPanel.add(eventText);
 		
@@ -134,5 +126,90 @@ public class GameWindow extends JFrame
 	   this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		 setVisible(true);
 	}
+	
+	public static void setTextField(String text)
+	{
+		eventText.setText(text);
+	}
+	
+	public static void setPetImage(ImageIcon image)
+	{
+		petImage.setIcon(image);
+	}
+
+	//initializes portraits, scales them to the necessary size
+	public static void initializeScaledPortraits()
+	{
+	//create an image icon, resized for button
+			ImageIcon catImg = new ImageIcon("C:\\Java Projects\\Pet Panic\\Assets\\Cat.png");
+			Image im = catImg.getImage();
+			Image newim = im.getScaledInstance(300, 270, java.awt.Image.SCALE_SMOOTH);
+			catImg = new ImageIcon(newim);
+			catPortrait = catImg;
+			
+			ImageIcon dogImg = new ImageIcon("C:\\Java Projects\\Pet Panic\\Assets\\Dog.png");
+			Image im2 = dogImg.getImage();
+			Image newim2 = im2.getScaledInstance(300, 390, java.awt.Image.SCALE_SMOOTH);
+			dogImg = new ImageIcon(newim2);
+			dogPortrait = dogImg;
+			
+			ImageIcon birdImg = new ImageIcon("C:\\Java Projects\\Pet Panic\\Assets\\Bird.png");
+			Image im3 = birdImg.getImage();
+			Image newim3 = im3.getScaledInstance(300, 270, java.awt.Image.SCALE_SMOOTH);
+			birdImg = new ImageIcon(newim3);
+			birdPortrait = birdImg;
+	}
+	
+	public static ImageIcon getCatPortrait()
+	{
+		return catPortrait;
+	}
+	public static ImageIcon getDogPortrait()
+	{
+		return dogPortrait;
+	}
+	public static ImageIcon getBirdPortrait()
+	{
+		return birdPortrait;
+	}
+	
+	
+	public static JLabel getCatAffectionJLabel()
+	{
+		return catAffection;
+	}
+	public static JLabel getDogAffectionJLabel()
+	{
+		return dogAffection;
+	}
+	public static JLabel getBirdAffectionJLabel()
+	{
+		return birdAffection;
+	}
+	public static JLabel getHasmterAffectionJLabel()
+	{
+		return hamsterAffection;
+	}
+	
+	
+	//Run the game
+	public static void main(String[] args) 
+	{
+		GameLogic.dog = new Pet();
+		GameLogic.cat = new Pet();
+		GameLogic.bird = new Pet();
+		GameLogic.hamster = new Pet();
+		
+		initializeScaledPortraits();
+		EventCardStorage.initialize();
+		
+		GameWindow window = new GameWindow();
+		//GameLogic.checkAffection();
+		GameLogic.startGame();
+		 
+	}
 
 }
+
+
+
