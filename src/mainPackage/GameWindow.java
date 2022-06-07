@@ -35,6 +35,7 @@ public class GameWindow extends JFrame
 	private static JLabel petImage;
 	private static JTextArea eventText;
 	private  JLabel spacer1;
+	private static Window window;
 
 	//creates the window and UI
 	public GameWindow()
@@ -203,6 +204,16 @@ public class GameWindow extends JFrame
 		return noButton;
 	}
 	
+	public static Window getWindow()
+	{
+		return window;
+	}
+	
+	public void close()
+	{
+		dispose();
+	}
+	
 	
 	//Run the game
 	public static void main(String[] args) 
@@ -211,7 +222,7 @@ public class GameWindow extends JFrame
 		GameLogic.cat = new Pet();
 		GameLogic.bird = new Pet();
 		
-		TutorialWindow window = new TutorialWindow();
+		window = new Window("tutorial");
 		
 		 
 	}
