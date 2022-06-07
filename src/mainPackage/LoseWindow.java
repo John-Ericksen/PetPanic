@@ -17,7 +17,7 @@ import java.awt.event.ActionListener;
 import java.awt.Font;
 
 //creates a window that showcases the tutorial. called before the game starts. might be deleted in favour of a readme if it becomes a hassle.
-public class TutorialWindow extends JFrame {
+public class LoseWindow extends JFrame {
 
 	private JPanel contentPane;
 	private JButton playButton;
@@ -31,7 +31,7 @@ public class TutorialWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TutorialWindow()
+	public LoseWindow()
 	{
 		buttonColor = new Color(249, 158, 234);
 		backroundColor = new Color(126, 178, 245);

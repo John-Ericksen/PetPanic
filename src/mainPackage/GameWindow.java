@@ -211,13 +211,8 @@ public class GameWindow extends JFrame
 		GameLogic.cat = new Pet();
 		GameLogic.bird = new Pet();
 		
-		//make a tutorial window here, turn the below code into an action event for tutorial window button
+		TutorialWindow window = new TutorialWindow();
 		
-		initializeScaledPortraits();
-		GameWindow window = new GameWindow();
-		EventCardStorage.initialize();
-		GameLogic.checkAffection();
-		GameLogic.pullCard();
 		 
 	}
 
