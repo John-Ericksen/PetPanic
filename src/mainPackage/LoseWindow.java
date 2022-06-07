@@ -102,8 +102,9 @@ public class LoseWindow extends JFrame {
 		tutorialText.setLineWrap(true);
 		tutorialText.setWrapStyleWord(true);
 		tutorialText.setBackground(backroundColor);
-		tutorialText.setText("You Lost! Your score was: " + (GameLogic.dog.getAffection() + GameLogic.cat.getAffection() + GameLogic.bird.getAffection()) 
-				+ "! Would you like to play again?");
+		tutorialText.setText("Welcome to Pet Panic, a game where you manage a pet shop!"
+				+ "In your shop, four factions are vying for dominance over your affection and the love of customers. It is your responsibility as the owner to manage the requests of each factions representative, and make sure all of them feel equally appreciated. Make sure they aren't neglected or favored too heavily, or a catastrophic end awaits you!"
+				);
 		middlePanel.add(tutorialText);
 		
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH); 

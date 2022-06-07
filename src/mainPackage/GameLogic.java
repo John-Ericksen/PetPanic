@@ -39,7 +39,7 @@ public class GameLogic
 			|| dog.getAffection() > TOO_MUCH_AFFECTION || cat.getAffection() > TOO_MUCH_AFFECTION || bird.getAffection() > TOO_MUCH_AFFECTION)
 		{
 			isAlive = false;
-			GameWindow.getWindow().makeLoseWindow();
+			GameWindow.setTextField("Game Over!");
 		}
 				
 	}
@@ -60,10 +60,7 @@ public class GameLogic
 		}
 		else 
 		{
-			GameWindow.getWindow().makeLoseWindow();
-				
-				
-			
+				GameWindow.setTextField("Game Over!");
 		}
 		
 	}

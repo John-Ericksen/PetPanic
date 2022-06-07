@@ -88,7 +88,7 @@ public class EventCard implements ActionListener {
 			GameLogic.bird.changeAffection(valueChanges[2]);
 			
 
-			w.getDogAffectionJLabel().setText("Dogs: " + GameLogic.dog.getAffection());
+			GameWindow.getDogAffectionJLabel().setText("Dogs: " + GameLogic.dog.getAffection());
 			GameWindow.getCatAffectionJLabel().setText("Cats: " + GameLogic.cat.getAffection());
 			GameWindow.getBirdAffectionJLabel().setText("Birds: " + GameLogic.bird.getAffection());
 
