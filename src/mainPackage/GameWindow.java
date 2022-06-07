@@ -2,6 +2,7 @@ package mainPackage;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -19,20 +20,20 @@ public class GameWindow extends JFrame
 	private static  ImageIcon catPortrait;
 	private static ImageIcon birdPortrait;
 	//private static ImageIcon hamsterPortrait;
-	private static EventCard listner = new EventCard("", new int[0], null);
+	private static EventCard listner = new EventCard();
 	private static JPanel contentPane;
 	private static JButton yesButton;
 	private static JButton noButton;
 	private JLabel spacer;
 	private Color buttonColor;
 	private Color backroundColor;
-	private static JLabel hamsterAffection;
+	private static JLabel affectionJLabel;
 	private static JLabel birdAffection;
 	private static JLabel catAffection;
 	private static JLabel dogAffection;
 	private static JPanel midPanel;
 	private static JLabel petImage;
-	private static JLabel eventText;
+	private static JTextArea eventText;
 	private  JLabel spacer1;
 
 	//creates the window and UI
@@ -61,6 +62,11 @@ public class GameWindow extends JFrame
 		contentPane.add(topPanel, BorderLayout.NORTH);
 		topPanel.setLayout(new GridLayout(0, 4, 0, 0));
 		
+		affectionJLabel = new JLabel("Affection Amounts: ");
+		affectionJLabel.setFont(new Font("Tahoma", Font.PLAIN, 35));
+		affectionJLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		topPanel.add(affectionJLabel);
+		
 		dogAffection = new JLabel("Dogs: 0");
 		dogAffection.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		dogAffection.setHorizontalAlignment(SwingConstants.CENTER);
@@ -71,10 +77,7 @@ public class GameWindow extends JFrame
 		catAffection.setHorizontalAlignment(SwingConstants.CENTER);
 		topPanel.add(catAffection);
 		
-		hamsterAffection = new JLabel("Hamsters: 0");
-		hamsterAffection.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		hamsterAffection.setHorizontalAlignment(SwingConstants.CENTER);
-		topPanel.add(hamsterAffection);
+		
 		
 		birdAffection = new JLabel("Birds: 0");
 		birdAffection.setFont(new Font("Tahoma", Font.PLAIN, 26));
@@ -104,20 +107,24 @@ public class GameWindow extends JFrame
 		contentPane.add(midPanel, BorderLayout.CENTER);
 		midPanel.setLayout(new GridLayout(3, 1, 0, 0));
 		
-		ImageIcon birdImg = new ImageIcon("C:\\Java Projects\\Pet Panic\\Assets\\Bird.png");
-		Image im3 = birdImg.getImage();
-		Image newim3 = im3.getScaledInstance(300, 270, java.awt.Image.SCALE_SMOOTH);
-		birdImg = new ImageIcon(newim3);
+
+		ImageIcon dogImg = new ImageIcon("C:\\Java Projects\\Pet Panic\\Assets\\Dog.png");
+		Image im2 = dogImg.getImage();
+		Image newim2 = im2.getScaledInstance(100, 190, java.awt.Image.SCALE_SMOOTH);
+		dogImg = new ImageIcon(newim2);
+		dogPortrait = dogImg;
 		
-		petImage = new JLabel(birdImg);
+		petImage = new JLabel(dogImg);
 		petImage.setHorizontalAlignment(SwingConstants.CENTER);
 		petImage.setVerticalAlignment(SwingConstants.TOP);
 		midPanel.add(petImage);
 		
-		eventText = new JLabel("New Event");
+		eventText = new JTextArea("New Event");
 		eventText.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		eventText.setVerticalAlignment(SwingConstants.TOP);
-		eventText.setHorizontalAlignment(SwingConstants.CENTER);
+		eventText.setEditable(false);
+		eventText.setLineWrap(true);
+		eventText.setWrapStyleWord(true);
+		eventText.setBackground(backroundColor);
 		midPanel.add(eventText);
 		
 		spacer1 = new JLabel("");
@@ -149,7 +156,7 @@ public class GameWindow extends JFrame
 			
 			ImageIcon dogImg = new ImageIcon("C:\\Java Projects\\Pet Panic\\Assets\\Dog.png");
 			Image im2 = dogImg.getImage();
-			Image newim2 = im2.getScaledInstance(300, 390, java.awt.Image.SCALE_SMOOTH);
+			Image newim2 = im2.getScaledInstance(100, 90, java.awt.Image.SCALE_SMOOTH);
 			dogImg = new ImageIcon(newim2);
 			dogPortrait = dogImg;
 			
@@ -186,9 +193,14 @@ public class GameWindow extends JFrame
 	{
 		return birdAffection;
 	}
-	public static JLabel getHasmterAffectionJLabel()
+	
+	public static JButton getYesButton()
 	{
-		return hamsterAffection;
+		return yesButton;
+	}
+	public static JButton getNoButton()
+	{
+		return noButton;
 	}
 	
 	
@@ -198,14 +210,14 @@ public class GameWindow extends JFrame
 		GameLogic.dog = new Pet();
 		GameLogic.cat = new Pet();
 		GameLogic.bird = new Pet();
-		GameLogic.hamster = new Pet();
+		
+		//make a tutorial window here, turn the below code into an action event for tutorial window button
 		
 		initializeScaledPortraits();
-		EventCardStorage.initialize();
-		
 		GameWindow window = new GameWindow();
-		//GameLogic.checkAffection();
-		GameLogic.startGame();
+		EventCardStorage.initialize();
+		GameLogic.checkAffection();
+		GameLogic.pullCard();
 		 
 	}
 

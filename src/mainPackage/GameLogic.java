@@ -15,8 +15,8 @@ public class GameLogic
 	static Pet hamster; 
 
 	//values for failing the game
-	static final int TOO_MUCH_AFFECTION = 20;
-	static final int TOO_LITTLE_AFFECTION = -1;
+	static final int TOO_MUCH_AFFECTION = 99;
+	static final int TOO_LITTLE_AFFECTION = 1;
 	
 	//values to store the currently picked card, and last picked card
 	private static int currentIndex;
@@ -33,24 +33,24 @@ public class GameLogic
 		GameWindow.getDogAffectionJLabel().setText("Dogs: " + dog.getAffection());
 		GameWindow.getCatAffectionJLabel().setText("Cats: " + cat.getAffection());
 		GameWindow.getBirdAffectionJLabel().setText("Birds: " + bird.getAffection());
-		GameWindow.getHasmterAffectionJLabel().setText("Cats: " + hamster.getAffection());
 		
 		
-		if(dog.getAffection() < TOO_LITTLE_AFFECTION || cat.getAffection() < TOO_LITTLE_AFFECTION || bird.getAffection() < TOO_LITTLE_AFFECTION || hamster.getAffection() < TOO_LITTLE_AFFECTION 
-			|| dog.getAffection() > TOO_MUCH_AFFECTION || cat.getAffection() > TOO_MUCH_AFFECTION || bird.getAffection() > TOO_MUCH_AFFECTION || hamster.getAffection() > TOO_MUCH_AFFECTION  )
+		if(dog.getAffection() < TOO_LITTLE_AFFECTION || cat.getAffection() < TOO_LITTLE_AFFECTION || bird.getAffection() < TOO_LITTLE_AFFECTION  
+			|| dog.getAffection() > TOO_MUCH_AFFECTION || cat.getAffection() > TOO_MUCH_AFFECTION || bird.getAffection() > TOO_MUCH_AFFECTION)
 		{
-			//show game over screen
+			isAlive = false;
+			GameWindow.setTextField("Game Over!");
 		}
 				
 	}
 	
 //method displays the information of a randomly chosen card from among all unchosen cards. also checks to see if the player has failed.
-	public static void startGame()
+	public static void pullCard()
 	{
 		if(isAlive == true && EventCardStorage.unusedCards.size() >= 1)
 		{
-			int cardIndex = /* (random generator. while testing, is disabled.)(int)(Math.random() * EventCardStorage.unusedCards.size())*/ 0;
-			EventCard currentCard = EventCardStorage.unusedCards.get(cardIndex);
+			int cardIndex = (int)(Math.random() * EventCardStorage.unusedCards.size());
+			EventCard currentCard = EventCardStorage.unusedCards.remove(cardIndex);
 			GameWindow.setTextField(currentCard.getText());
 			GameWindow.setPetImage(currentCard.getPortrait());
 			EventCardStorage.usedCards.add(currentCard);
@@ -65,16 +65,8 @@ public class GameLogic
 		
 	}
 	
-	//variant of start game in which the previously chosen card is moved to the "used" pile of cards.
-	public static void pullCard()
-	{	
-		EventCardStorage.unusedCards.remove(lastIndex);
-		startGame();
-	
-	}
 	
 	
-		
 }
 	
 
