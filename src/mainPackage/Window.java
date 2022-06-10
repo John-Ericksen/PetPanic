@@ -69,7 +69,6 @@ public class Window extends JFrame {
 	
 	public void makeTutorialWindow()
 	{
-		//removeAll();
 		
 		buttonColor = new Color(249, 158, 234);
 		backroundColor = new Color(126, 178, 245);
@@ -117,8 +116,9 @@ public class Window extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				GameWindow.initializeScaledPortraits();
-				GameWindow.getWindow().makeGameWindow();
+				ProgramRunner.initializePets();
+				ProgramRunner.initializeScaledPortraits();
+				ProgramRunner.getWindow().makeGameWindow();
 				EventCardStorage.initialize();
 				GameLogic.checkAffection();
 				GameLogic.pullCard();
@@ -148,9 +148,16 @@ public class Window extends JFrame {
 		 setVisible(true);
 	}
 	
+	
+	
+	//----------------------------------
+	
+	
+	
+	
 	public void makeLoseWindow()
 	{
-		//removeAll();
+		contentPane.removeAll();
 		
 		buttonColor = new Color(249, 158, 234);
 		backroundColor = new Color(126, 178, 245);
@@ -198,9 +205,10 @@ public class Window extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				GameWindow.initializeScaledPortraits();
-				GameWindow.getWindow().makeGameWindow();
+				ProgramRunner.initializePets();
+				ProgramRunner.initializeScaledPortraits();
 				EventCardStorage.initialize();
+				ProgramRunner.getWindow().makeGameWindow();
 				GameLogic.checkAffection();
 				GameLogic.pullCard();
 				
@@ -228,9 +236,14 @@ public class Window extends JFrame {
 		 setVisible(true);
 	}
 	
+	//---------------------------------------------------
+	
+	
+	
+	
 	public void makeGameWindow()
 	{
-		//removeAll();
+		contentPane.removeAll();
 		
 		buttonColor = new Color(249, 158, 234);
 		backroundColor = new Color(126, 178, 245);
@@ -326,6 +339,105 @@ public class Window extends JFrame {
 		 setVisible(true);
 	}
 	
+	
+	
+	
+	
+	//-------------------------------------
+	
+	
+	
+	
+	public void makeWinWindow()
+	{
+		contentPane.removeAll();
+		
+		buttonColor = new Color(249, 158, 234);
+		backroundColor = new Color(126, 178, 245);
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 1303, 767);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setBackground(backroundColor);
+		contentPane.setLayout(new BorderLayout(0, 0));
+		
+		JLabel tutorialTitle = new JLabel("Pet Panic!");
+		tutorialTitle.setBackground(backroundColor);
+		tutorialTitle.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 54));
+		tutorialTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		contentPane.add(tutorialTitle, BorderLayout.NORTH);
+		
+		JPanel bottomPanel = new JPanel();
+		bottomPanel.setBackground(backroundColor);
+		contentPane.add(bottomPanel, BorderLayout.SOUTH);
+		bottomPanel.setLayout(new GridLayout(0, 3, 0, 0));
+		
+	
+		quitButton = new JButton("Quit game");
+		quitButton.addActionListener(new ActionListener(){
+			
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				System.exit(0);
+			}
+		});
+		quitButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		quitButton.setBackground(buttonColor);;
+		bottomPanel.add(quitButton);
+		
+		spacer = new JLabel("");
+		bottomPanel.add(spacer);
+		
+		playButton = new JButton("Start Game");
+		playButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		playButton.setBackground(buttonColor);
+		playButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ProgramRunner.initializePets();
+				ProgramRunner.initializeScaledPortraits();
+				EventCardStorage.initialize();
+				ProgramRunner.getWindow().makeGameWindow();
+				GameLogic.checkAffection();
+				GameLogic.pullCard();
+				
+			}
+		});
+		bottomPanel.add(playButton);
+		
+		
+		middlePanel = new JPanel();
+		middlePanel.setBackground(backroundColor);
+		contentPane.add(middlePanel, BorderLayout.CENTER);
+		middlePanel.setLayout(new BorderLayout(0, 0));
+		
+		tutorialText = new JTextArea();
+		tutorialText.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		tutorialText.setEditable(false);
+		tutorialText.setLineWrap(true);
+		tutorialText.setWrapStyleWord(true);
+		tutorialText.setBackground(backroundColor);
+		tutorialText.setText("You Won! Your score was: " + (500 + GameLogic.dog.getAffection() + GameLogic.cat.getAffection() + GameLogic.bird.getAffection()) 
+				+ "! Would you like to play again?");
+		middlePanel.add(tutorialText);
+		
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		 setVisible(true);
+	}
+	
+	
+	
+	
+	//-------------------------
+	
+	
+	
+	
+	
 	public static void setTextField(String text)
 	{
 		eventText.setText(text);
@@ -358,6 +470,7 @@ public class Window extends JFrame {
 			birdImg = new ImageIcon(newim3);
 			birdPortrait = birdImg;
 	}
+	
 	
 	public static ImageIcon getCatPortrait()
 	{
@@ -404,5 +517,7 @@ public class Window extends JFrame {
 	{
 		dispose();
 	}
+	
+	
 
 }
