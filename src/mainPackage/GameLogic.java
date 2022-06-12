@@ -20,7 +20,7 @@ public class GameLogic
 	}
 	
 	//checks to see if you have failed
-	public static void checkAffection()
+	public static boolean checkAffection()
 	{
 		
 		Window.getDogAffectionJLabel().setText("Dogs: " + dog.getAffection());
@@ -31,15 +31,19 @@ public class GameLogic
 		if(dog.getAffection() < TOO_LITTLE_AFFECTION || cat.getAffection() < TOO_LITTLE_AFFECTION || bird.getAffection() < TOO_LITTLE_AFFECTION  
 			|| dog.getAffection() > TOO_MUCH_AFFECTION || cat.getAffection() > TOO_MUCH_AFFECTION || bird.getAffection() > TOO_MUCH_AFFECTION)
 		{
-			ProgramRunner.getWindow().makeLoseWindow();
+			return false;
+			//ProgramRunner.getWindow().makeLoseWindow();
 		}
+		else return true;
+		
+		
 				
 	}
 	
 //method displays the information of a randomly chosen card from among all unchosen cards. also checks to see if the player has failed.
 	public static void pullCard()
 	{
-		if(EventCardStorage.unusedCards.size() >= 1)
+		if(EventCardStorage.unusedCards.size() >= 1 && checkAffection() == true)
 		{
 			int cardIndex = (int)(Math.random() * EventCardStorage.unusedCards.size());
 			EventCard currentCard = EventCardStorage.unusedCards.remove(cardIndex);
@@ -47,8 +51,15 @@ public class GameLogic
 			Window.setTextField(currentCard.getText());
 			Window.setPetImage(currentCard.getPortrait());
 			EventCardStorage.usedCards.add(currentCard);
-			checkAffection();
 			
+		}
+		else if(EventCardStorage.unusedCards.size() >= 1 && checkAffection() == false)
+		{
+			ProgramRunner.getWindow().makeLoseWindow();
+		}
+		else if(EventCardStorage.unusedCards.size() < 1 && checkAffection() == false)
+		{
+			ProgramRunner.getWindow().makeLoseWindow();
 		}
 		else 
 		{
